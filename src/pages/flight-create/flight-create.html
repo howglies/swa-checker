@@ -1,0 +1,45 @@
+<!--
+  Generated template for the FlightCreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>New Flight</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label stacked>Departure Airport</ion-label>
+    <ion-input [(ngModel)]="departure_airport" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Arrival Airport</ion-label>
+    <ion-input [(ngModel)]="destination_airport" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Flight Number</ion-label>
+    <ion-input [(ngModel)]="flight_number" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Flight Date</ion-label>
+    <ion-datetime [(ngModel)]="flight_date" ></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Payment Method</ion-label>
+    <ion-select [(ngModel)]="payment_method">
+      <ion-option value="DOLLARS">Dollars</ion-option>
+      <ion-option value="POINTS">Points</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Payment Amount</ion-label>
+    <ion-input [(ngModel)]="payment_amount" type="number"></ion-input>
+  </ion-item>
+  <button ion-button secondary (click)="createFlight(departure_airport, destination_airport, flight_number, flight_date, payment_method, payment_amount)">
+    Create Flight
+  </button>
+</ion-content>

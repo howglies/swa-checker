@@ -3,21 +3,39 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Flights</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
+    <button ion-button full icon-start (click) = "addFlight()">
+      <ion-icon name="add"></ion-icon>
+      Add Flight
     </button>
+    <button ion-button full icon-start (click) = "getPrices()">
+      Get Prices
+    </button>
+    <ion-item *ngFor="let flight of flights | async" (click)="showFlight(flight.$key)">
+      {{flight.departure_airport}} -> {{flight.destination_airport}} ({{flight.flight_date}})
+    </ion-item>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>Departure Airport</ion-col>
+      <ion-col>Destination Airport</ion-col>
+      <ion-col>Flight Date</ion-col>
+      <ion-col>Payment Method</ion-col>
+      <ion-col>Payment Amount</ion-col>
+      <ion-col>Current Price</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let flight of flights | async">
+      <ion-col>{{flight.departure_airport}}</ion-col>
+      <ion-col>{{flight.destination_airport}}</ion-col>
+      <ion-col>{{flight.flight_date}}</ion-col>
+      <ion-col>{{flight.payment_method}}</ion-col>
+      <ion-col>{{flight.payment_amount}}</ion-col>
+      <ion-col>{{flight.current_price}}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
